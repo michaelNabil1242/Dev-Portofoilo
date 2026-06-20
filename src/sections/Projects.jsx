@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
+import { useState } from "react";
 
 const projects = [
   {
@@ -43,6 +44,7 @@ const projects = [
 ];
 
 function Projects() {
+  const [showLinks, setShowLinks] = useState(false);
   return (
     <section id="projects" className="py-32 relative overflow-hidden ">
       {/* BG glows */}
@@ -83,17 +85,23 @@ function Projects() {
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparen opacity-60" />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent opacity-60" />
                 {/* Overlay Links */}
-                <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 hover:opacity-100 transition-opacity duration-300">
+                <div
+                  className={`absolute inset-0 flex items-center justify-center gap-4 ${showLinks ? "opacity-100" : "opacity-0"} hover:opacity-100 transition-opacity duration-300`}
+                >
                   <a
                     href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all duration-300 "
                   >
                     <ArrowUpRight className="w-5 h-5" />
                   </a>
                   <a
                     href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all duration-300"
                   >
                     <FaGithub className="w-5 h-5" />
@@ -110,11 +118,12 @@ function Projects() {
                   <div>
                     <ArrowUpRight
                       className="w-5 h-5 text-muted-foreground group-hover:text-primary
-                  group-hover:translate-x-1
-                  group-hover:translate-y-1
-                  hover:scale-130      
-                   transition-all duration-300"
-                    />
+                      group-hover:translate-x-1
+                      group-hover:translate-y-1
+                      hover:scale-130      
+                      transition-all duration-300"
+                      onClick={() => setShowLinks((x) => !x)}
+                    ></ArrowUpRight>
                   </div>
                 </div>
                 <p className="text-muted-foreground text-sm ">

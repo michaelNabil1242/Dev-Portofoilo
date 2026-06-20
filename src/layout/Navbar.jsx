@@ -6,7 +6,6 @@ const navLinks = [
   { href: "#about", label: "About" },
   { href: "#projects", label: "Projects" },
   { href: "#experience", label: "Experience" },
-  { href: "#testimonials", label: "Testimonials" },
 ];
 
 function Navbar() {
@@ -37,7 +36,7 @@ function Navbar() {
         </a>
 
         {/*Desktop Nav*/}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden md:flex absolute  left-1/2 -translate-x-1/2">
           <div className="glass rounded-full px-2 py-1 flex items-center gap-1">
             {navLinks.map((link) => (
               <a

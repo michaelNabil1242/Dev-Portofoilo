@@ -90,14 +90,21 @@ function Hero() {
             </div>
             {/* CTA Button */}
             <div className="flex flex-wrap gap-4 animate-fade-in animation-delay-300">
-              <Button size="lg">
-                Get in Touch <ArrowRight className="w-5 h-5" />
-              </Button>
-
-              <AnimatedBorderButton>
-                <Download className="w-5 h-5" />
-                Download CV
-              </AnimatedBorderButton>
+              <a href="#contact">
+                <Button size="lg">
+                  Get in Touch <ArrowRight className="w-5 h-5" />
+                </Button>
+              </a>
+              <a
+                href="/public/Michael_Nabil_Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <AnimatedBorderButton size="lg">
+                  <Download className="w-5 h-5" />
+                  Download CV
+                </AnimatedBorderButton>
+              </a>
             </div>
             {/* Social Links */}
             <div className="flex items-center gap-4 animate-fade-in animation-delay-400">
@@ -128,7 +135,7 @@ function Hero() {
             </div>
           </div>
           {/* right column - prrofile image */}
-          <div className="relative animate-fade-in animation-delay-300">
+          <div className="relative animate-fade-in animation-delay-100">
             {/* profile image */}
             <div className="relative max-w-md mx-auto">
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/30 via-transparent to-primary/10 blur-2xl animate-pulse" />
