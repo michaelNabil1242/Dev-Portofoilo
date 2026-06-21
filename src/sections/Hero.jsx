@@ -96,7 +96,7 @@ function Hero() {
                 </Button>
               </a>
               <a
-                href="/public/Michael_Nabil_Resume.pdf"
+                href="/Michael_Nabil_Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
               >
