@@ -21,7 +21,7 @@ const contactInfo = [
     icon: Phone,
     label: "Phone",
     value: "+201080928184",
-    href: "tel:+2001080928184",
+    href: "tel:+201080928184",
   },
   {
     icon: MapPin,
@@ -51,10 +51,6 @@ function Contact() {
       const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
       const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-      console.log("serviceId:", serviceId);
-      console.log("templateId:", templateId);
-      console.log("publicKey:", publicKey);
-
       if (!serviceId || !templateId || !publicKey) {
         throw new Error("Emailjs configuration is missing");
       }
@@ -72,6 +68,7 @@ function Contact() {
         type: "success",
         message: "Message is sent successfully",
       });
+      setFormData({ name: "", email: "", message: "" });
     } catch (err) {
       console.log("EmailJs Error", err);
       setSubmitStatus({
@@ -80,16 +77,15 @@ function Contact() {
       });
     } finally {
       setIsLoading(false);
-      setFormData({ name: "", email: "", message: "" });
     }
   }
   return (
-    <section id="contact" className="py-32 relative overflow-hidden ">
-      <div className="absolute top-0 left-0 w-full h-full">
+    <section id="contact" className="py-32 relative overflow-x-hidden">
+      <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-highlight/5 rounded-full blur-3xl" />
       </div>
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Section header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase animate-fade-in">
@@ -106,8 +102,8 @@ function Contact() {
             and let's discuss how we can work together.
           </p>
         </div>
-        <div className="grid lg:grid-cols-2 gap-12 mx-auto max-w-5xl">
-          <div className="glass p-8 rounded-3xl border border-primary/30 animate-fade-in animation-delay-300">
+        <div className="grid w-full lg:grid-cols-2 gap-8 sm:gap-12 mx-auto max-w-5xl">
+          <div className="glass w-full min-w-0 p-6 sm:p-8 rounded-3xl border border-primary/30 animate-fade-in animation-delay-300 overflow-hidden">
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
@@ -118,6 +114,7 @@ function Contact() {
                 </label>
                 <input
                   type="text"
+                  autoComplete="name"
                   id="name"
                   placeholder="Your Name"
                   required
@@ -137,6 +134,7 @@ function Contact() {
                   Email
                 </label>
                 <input
+                  autoComplete="email"
                   type="email"
                   id="email"
                   required
@@ -160,17 +158,18 @@ function Contact() {
                   placeholder="Your Message"
                   required
                   rows="5"
+                  id="message"
                   value={formData.message}
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
                   }
-                  className="w-full px-4 py-2 bg-surface border transition-all duration-300 border-border rounded-2xl outline-none focus:border-primary focus:ring-1 focus:ring-primary resize-none"
+                  className="w-full box-border px-4 py-2 bg-surface border transition-all duration-300 border-border rounded-2xl outline-none focus:border-primary focus:ring-1 focus:ring-primary resize-none"
                 />
               </div>
               <Button
                 type="submit"
                 size="lg"
-                className="w-full py-3"
+                className="w-full py-3 box-border"
                 disabled={isLoading}
               >
                 {isLoading ? (
@@ -203,8 +202,8 @@ function Contact() {
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-6 animate-fade-in animation-delay-400">
-            <div className="glass rounded-3xl p-8">
+          <div className="w-full min-w-0 space-y-6 animate-fade-in animation-delay-400">
+            <div className="glass rounded-3xl p-6 sm:p-8">
               <h3 className="text-xl font-semibold mb-6">
                 Contact Information
               </h3>
@@ -213,6 +212,8 @@ function Contact() {
                   <a
                     key={i}
                     href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-4 p-4 rounded-xl hover:bg-surface transition-colors group"
                   >
                     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
@@ -230,7 +231,7 @@ function Contact() {
             </div>
 
             {/* Availability Card */}
-            <div className="glass rounded-3xl p-8 border border-primary/30">
+            <div className="glass rounded-3xl p-6 sm:p-8 border border-primary/30">
               <div className="flex items-center gap-3 mb-4">
                 <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
                 <span className="font-medium">Currently Available</span>
